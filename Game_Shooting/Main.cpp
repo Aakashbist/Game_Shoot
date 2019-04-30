@@ -50,33 +50,11 @@ int main(int argc, char** argv) {
 	//load image into ram, as a surface we can access and tweak pixel data if we like
 	SDL_Surface* background = SDL_LoadBMP(GAME_BACKGROUND);
 	//convert surface into texture. Texture will be stored in VRAM for our graphics card to use
-	SDL_Texture* knightTexture = SDL_CreateTextureFromSurface(renderer, background);
+	SDL_Texture* backgroundTexture = SDL_CreateTextureFromSurface(renderer, background);
 	//dont need surface anymore, lets free its memory
 	SDL_FreeSurface(background);
 
-	//region we want to draw from our texture
-	SDL_Rect sourceRect;
-	sourceRect.x =50 ;
-	sourceRect.y = 60;
-
-	//ask gfx card about width and height of our texture and store it on our sourceRect
-	//SDL_QueryTexture(knightTexture, NULL, NULL, &sourceRect.w, &sourceRect.h);
-	sourceRect.w = WINDOW_WIDTH;
-	sourceRect.h = WINDOW_HEIGHT;
-
-
-	//where to draw our knight
-	SDL_Rect destinationRect;
-	destinationRect.x = 100;
-	destinationRect.y = 100;
-	destinationRect.w = sourceRect.w;
-	destinationRect.h = sourceRect.h;
-
-
-
-
-
-
+	
 	//LOAD UP SOME MUSIC
 	Mix_Music* music = Mix_LoadMUS(GAME_SOUND);
 	if (music == NULL) {
@@ -109,7 +87,8 @@ int main(int argc, char** argv) {
 				}
 			}
 		}
-
+		SDL_RenderCopy(renderer, backgroundTexture, NULL, NULL);
+		SDL_RenderPresent(renderer);
 	}
 
 	//stop playing music BEFORE you release its memory
@@ -117,6 +96,9 @@ int main(int argc, char** argv) {
 	//delete song from memory
 	Mix_FreeMusic(music);
 
+	
+	SDL_DestroyTexture(backgroundTexture);
+	SDL_DestroyRenderer(renderer);
 	SDL_DestroyWindow(window);
 
 	SDL_Quit();
