@@ -13,7 +13,7 @@ int main(int argc, char** argv) {
 
 
 	SDL_Window* window = SDL_CreateWindow("My Game", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-		800, 600, SDL_WINDOW_SHOWN|SDL_WINDOW_FULLSCREEN);
+		800, 600, SDL_WINDOW_SHOWN);
 
 
 
