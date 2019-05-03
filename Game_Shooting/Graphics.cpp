@@ -138,7 +138,7 @@ SDL_Texture * Graphics::createGameHeadingTexture(TTF_Font * font, string text)
 {
 	{
 
-		SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), { 255,0,255 });
+		SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), { 223, 0, 34, 145 });
 		if (surface == NULL) {
 			cout << "Text render error: " << IMG_GetError() << endl;
 			return NULL;

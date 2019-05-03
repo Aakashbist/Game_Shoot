@@ -5,7 +5,7 @@ RenderText::RenderText()
 {
 }
 
-RenderText::RenderText(string text, string fontPath, int size)
+RenderText::RenderText(string text, string fontPath, int size,int x, int y)
 {
 	graphics = Graphics::instance();
 	string path = SDL_GetBasePath();
@@ -15,8 +15,8 @@ RenderText::RenderText(string text, string fontPath, int size)
 
 	//text destination
 	SDL_Rect textDestination;
-	textDestination.x = 150;
-	textDestination.y = 50;
+	textDestination.x = x;
+	textDestination.y = y;
 
 	SDL_QueryTexture(texture, NULL, NULL, &textDestination.w, &textDestination.h);
 	graphics->loadTextOnScreen(texture, &textDestination);

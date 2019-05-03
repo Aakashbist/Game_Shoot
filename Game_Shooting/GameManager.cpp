@@ -58,7 +58,11 @@ void GameManager::run()
 			graphics->clearSurface();
 		
 			texture->render();
-			RenderText* text = new RenderText("SPACE SHOOTER", TTF_FONT, 72);
+			RenderText* text = new RenderText("SPACE SHOOTER", TTF_FONT, 75,150,50);
+			RenderText* text1 = new RenderText("Menu", TTF_FONT, 55, 300, 150); 
+			RenderText* text2 = new RenderText("Play", TTF_FONT, 55, 300, 250);
+			RenderText* text3 = new RenderText("Instruction", TTF_FONT, 55, 300, 350);
+			RenderText* text4 = new RenderText("Exit", TTF_FONT, 55, 300, 450);
 			graphics->render();
 
 
