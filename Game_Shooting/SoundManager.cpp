@@ -28,5 +28,4 @@ void SoundManager::playSound(string name) {
 	}
 }
 
-
 SoundManager SoundManager::soundManager;
