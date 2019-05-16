@@ -130,22 +130,37 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Animation.cpp" />
+    <ClCompile Include="Bullet.cpp" />
+    <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="GameState.cpp" />
+    <ClCompile Include="Global.cpp" />
+    <ClCompile Include="Hero.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
+    <ClCompile Include="KeyboardHandler.cpp" />
     <ClCompile Include="Main.cpp" />
-    <ClCompile Include="RenderText.cpp" />
     <ClCompile Include="SoundManager.cpp" />
     <ClCompile Include="Texture.cpp" />
+    <ClCompile Include="Vector.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="GameManager.h" />
-    <ClInclude Include="Graphics.h" />
+    <ClInclude Include="Animation.h" />
+    <ClInclude Include="Bullet.h" />
+    <ClInclude Include="Entity.h" />
+    <ClInclude Include="GameState.h" />
+    <ClInclude Include="Global.h" />
+    <ClInclude Include="Hero.h" />
     <ClInclude Include="Image.h" />
-    <ClInclude Include="RenderText.h" />
+    <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="KeyboardHandler.h" />
     <ClInclude Include="Setting.h" />
     <ClInclude Include="SoundManager.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Vector.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
