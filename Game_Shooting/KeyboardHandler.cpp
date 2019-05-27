@@ -1,4 +1,5 @@
 #include "KeyboardHandler.h"
+#include"Setting.h"
 
 
 KeyboardHandler::KeyboardHandler()
@@ -19,27 +20,25 @@ void KeyboardHandler::update(SDL_Event* event) {
 			hero->setXY(200, 200);
 		}
 		//SHOOT
-		//if (event->key.keysym.scancode == SDL_SCANCODE_SPACE && event->key.repeat == 0) {
-		//	//hero->shoot(dt);
-		//}
+		if (event->key.keysym.scancode == SDL_SCANCODE_SPACE && event->key.repeat == 0) {
+			hero->shoot();
+			
+		}
 	}
 }
 void KeyboardHandler::updateHeldKeys() {
 	//get array of all keyboard key states(1=held, 0=not held down)
 	const Uint8* keystates = SDL_GetKeyboardState(NULL);
 
-	//reset acceleration for hero to nothing
-	hero->acceleration.x = 0;
-	hero->acceleration.y = 0;
-
-	//check held down keys
-	if (keystates[SDL_SCANCODE_UP])
-		
-		hero->acceleration.y = -80;
-	if (keystates[SDL_SCANCODE_DOWN])
-		hero->acceleration.y = 80;
-	if (keystates[SDL_SCANCODE_LEFT])
-		hero->acceleration.x = -80;
-	if (keystates[SDL_SCANCODE_RIGHT])
-		hero->acceleration.x = 80;
+	if (keystates[SDL_SCANCODE_LEFT]) {
+		if (hero->position.x > 0) {
+			hero->position.x -= 5;
+		}
+	}
+	if (keystates[SDL_SCANCODE_RIGHT]) {
+		if (hero->position.x < WINDOW_WIDTH - 99) {
+			hero->position.x += 5;
+		}
+	}
 }
+

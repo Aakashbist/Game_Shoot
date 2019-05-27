@@ -27,44 +27,20 @@ float Entity::getY() {
 }
 
 void Entity::update(float dt) {
-	//do nothing, let sub classes deal with this
-	velocity.x = (acceleration.x*dt);
-	velocity.y = (acceleration.y*dt);
-
-	//velocity changes position
-	position.x = position.x + (velocity.x*dt);
-	position.y = position.y + (velocity.y*dt);
-
-	acceleration.x = applyFriction(acceleration.x);
-	acceleration.y = applyFriction(acceleration.y);
+	
 }
+
 
 void Entity::updateMovement(float dt) {
-	//acceleration changes velocit
+
+	velocity.x += (acceleration.x*dt);
+	velocity.y += (acceleration.y*dt);
+
+	position.x = position.x + (velocity.x*dt);
+	position.y = position.y + (velocity.y*dt);
 }
 
- double applyFriction(double value) {
-	int friction = 1;
-	double newValue = value;
-	if (value > 0) {
-		if (value < friction) {
-			newValue = 0;
-		}
-		else {
-			newValue -= friction;
-		}
-	}
-	else {
-		if (abs(value) < friction) {
-			newValue = 0;
-		}
-		else {
-			newValue += friction;
-		}
-	}
-	return newValue;
-}
-
+ 
 void Entity::draw() {
 	//same as update
 }

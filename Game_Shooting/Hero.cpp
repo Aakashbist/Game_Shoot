@@ -1,81 +1,79 @@
 #include "Hero.h"
 
 
+
 Hero::Hero()
 {
-	rotationAngle = 0.0;
-	
 	animation = NULL;
-
+	active = true;
 }
 
 
 Hero::~Hero()
 {
+
 }
 
 void Hero::setAnimation(Animation* animation) {
 	this->animation = animation;
+	height = this->animation->frameHeight;
+	width = this->animation->frameWidth;
 }
 
-void Hero::consumeKeyboardEvent(SDL_Event * event, float dt)
-{
-	const Uint8* keystates = SDL_GetKeyboardState(NULL);
 
-	//check held down keys
-	if (keystates[SDL_SCANCODE_LEFT]) {
-		rotationAngle -= 5.00;
-	}
-	if (keystates[SDL_SCANCODE_RIGHT]) {
-		rotationAngle += 5.00;
-	}
-	
-	double newAngle = abs(rotationAngle);
-	newAngle = fmod(newAngle, 360);
-
-	if (keystates[SDL_SCANCODE_UP]) {
-		acceleration.x -= speed * sin(newAngle);
-		acceleration.y -= speed * cos(newAngle);
-	}
-	if (keystates[SDL_SCANCODE_DOWN]) {
-		acceleration.x += speed * sin(newAngle);
-		acceleration.y += speed * cos(newAngle);
-	}
-	printf("acceleration:%f,   %f, %f\n", newAngle, acceleration.x, acceleration.y);
-
-	if (event->key.keysym.scancode == SDL_SCANCODE_SPACE && event->key.repeat == 0) {
-		shoot(dt);
-		printf("Shoot shoot %f\n", 00.00);
-	}
-
-;
-}
-
-void Hero::shoot(float dt) {
+void Hero::shoot() {
 
 	Bullet* bullet = new Bullet();
-	bullet->setRenderer(renderer);
+	bullet->setRenderer(Global::renderer);
 	bullet->setXY(position.x, position.y);
-	bullet->angle = rotationAngle;
-	bullet->movementSpeed = 200;
-	
-	bullet->draw();
 
-	
+	bullets.push_back(bullet);
+
 }
-
 
 void Hero::update(float dt) {
+	printf("size = %d", bullets.size());
+	//Remove all game entities that are not active
+	for (auto bullet = bullets.begin(); bullet != bullets.end();)
+	{
+		if ((*bullet)->position.y < -100)
+		{
+			//not active
+			delete *bullet;
+			bullet = bullets.erase(bullet);
+		}
+		else {
+			(*bullet)->update(dt);
+			bullet++;
+		}
 
-	Entity::update(dt);
+	}
+	/*for (auto bullet : bullets) {
+		if (bullet->position.y < -100) {
+			bullets.remove(bullet);
+			printf("size after delete = %d", bullets.size());
+		}
 
-	//update movement based on velocity
-	updateMovement(dt);
+	}*/
 
-	if (animation != NULL)
-		animation->update(dt);
+
 }
-void Hero::draw() {
 
-	animation->draw(position.x, position.y, rotationAngle);
+void Hero::draw() {
+	if (active) {
+		animation->draw(position.x, position.y);
+	}
+
+	for (auto bullet : bullets) {
+
+		bullet->draw();
+
+
+	}
+
+}
+
+std::string Hero::getStateID()
+{
+	return "hero";
 }

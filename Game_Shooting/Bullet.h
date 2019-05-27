@@ -1,18 +1,24 @@
 #pragma once
 #include "Entity.h"
 #include "Global.h"
+#include "Setting.h"
+#include "Animation.h"
 #include <cmath>
 class Bullet :
 	public Entity
 {
 public:
+
+	Animation* animation;
 	Bullet();
 	~Bullet();
 
-	float angle;
-	float movementSpeed;
+	const int BULLET_SPEED = 2;
 
+
+	void setAnimation(Animation* animation);
 	void update(float dt);
 	void draw();
+	virtual std::string getStateID();
 };
 

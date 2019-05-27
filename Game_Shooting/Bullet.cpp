@@ -1,28 +1,34 @@
 #include "Bullet.h"
 
-
 Bullet::Bullet()
 {
+	animation = NULL;
+	active = true;
 }
 
 
 Bullet::~Bullet()
 {
-
 }
+
+void Bullet::setAnimation(Animation* animation) {
+	this->animation = animation;
+}
+
 
 void Bullet::update(float dt) {
-	//convert angle in degrees to radians(for trigonometry)
-	float angleInRadians = angle / 180 * M_PI;
-
-	velocity.x = movementSpeed*cos(angleInRadians);
-	velocity.y = movementSpeed*sin(angleInRadians);
-
+	position.y -= BULLET_SPEED;
 	updateMovement(dt);
-
 }
 void Bullet::draw() {
-	SDL_SetRenderDrawColor(Global::renderer, 255, 255, 0, 255);//yellow
-	SDL_Rect bulletRect = { position.x, position.y , 20, 20 };
+	if(active){
+	SDL_SetRenderDrawColor(Global::renderer, 0, 255, 0, 255);
+	SDL_Rect bulletRect = { position.x + 50 , position.y -25 , 4, 20 };
 	SDL_RenderFillRect(Global::renderer, &bulletRect);
+	}
+}
+
+std::string Bullet::getStateID()
+{
+	return "bullet";
 }
