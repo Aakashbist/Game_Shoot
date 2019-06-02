@@ -4,7 +4,7 @@ Astroid::Astroid()
 {
 	velocity.x = 0;
 	velocity.y = 0;
-	gravity = 100;
+	gravity = 10;
 	active = true;
 }
 

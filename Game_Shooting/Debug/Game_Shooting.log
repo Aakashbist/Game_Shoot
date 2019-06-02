@@ -1,13 +1,8 @@
-﻿  Bullet.cpp
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\bullet.cpp(28): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\bullet.cpp(28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
-  Skipping... (no relevant changes detected)
-  PlayState.cpp
-  MenuState.cpp
-  Main.cpp
-  KeyboardHandler.cpp
-  InputHandler.cpp
-  Hero.cpp
+﻿  PlayState.cpp
+c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(9): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(12): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(15): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
   Game_Shooting.vcxproj -> C:\Users\OEM\Documents\Visual Studio 2015\Projects\Game_Shooting\Debug\Game_Shooting.exe
   Game_Shooting.vcxproj -> C:\Users\OEM\Documents\Visual Studio 2015\Projects\Game_Shooting\Debug\Game_Shooting.pdb (Partial PDB)
