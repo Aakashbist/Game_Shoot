@@ -68,4 +68,4 @@ void GameStateMachine::render()
 		gameStates.back()->render();
 }
 
-GameStateMachine GameStateMachine::gameStateMachine;
+

@@ -14,6 +14,8 @@ public:
 	~Bullet();
 
 	const int BULLET_SPEED = 2;
+	int height;
+	int width;
 
 
 	void setAnimation(Animation* animation);

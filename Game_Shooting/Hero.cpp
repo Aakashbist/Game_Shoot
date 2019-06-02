@@ -32,7 +32,7 @@ void Hero::shoot() {
 }
 
 void Hero::update(float dt) {
-	printf("size = %d", bullets.size());
+	
 	//Remove all game entities that are not active
 	for (auto bullet = bullets.begin(); bullet != bullets.end();)
 	{
@@ -48,15 +48,6 @@ void Hero::update(float dt) {
 		}
 
 	}
-	/*for (auto bullet : bullets) {
-		if (bullet->position.y < -100) {
-			bullets.remove(bullet);
-			printf("size after delete = %d", bullets.size());
-		}
-
-	}*/
-
-
 }
 
 void Hero::draw() {

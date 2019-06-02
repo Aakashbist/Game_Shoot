@@ -6,8 +6,6 @@
 #include <SDL.h>
 #include"GameStateMachine.h"
 
-
-
 class Global
 {
 public:
@@ -20,6 +18,7 @@ public:
 	static bool quitGame;
 	
 	static GameStateMachine gameStateMachine;
+	
 };
 
 

@@ -21,8 +21,7 @@ public:
 	void render();
 
 	//global reference we can use
-	
-	static GameStateMachine gameStateMachine;
+
 
 };
 

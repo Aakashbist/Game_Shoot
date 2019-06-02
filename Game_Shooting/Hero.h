@@ -27,6 +27,6 @@ public:
 	virtual void update(float dt);
 	virtual void draw();
 	virtual std::string getStateID();
-	list<Bullet* > bullets;
+	 list<Bullet* > bullets;
 };
 

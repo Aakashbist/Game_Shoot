@@ -18,7 +18,8 @@ public:
 	void setAnimation(Animation* animation);
 	void update(float dt);
 	void draw();
-	virtual std::string getStateID() ;
-	//static list<Astroid*> astroides;
-
+	virtual std::string getStateID();
+	void push(Astroid* astroid);
+	list<Astroid*> astroides;
+	static Astroid astroid;
 };

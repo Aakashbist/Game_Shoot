@@ -13,6 +13,8 @@ Bullet::~Bullet()
 
 void Bullet::setAnimation(Animation* animation) {
 	this->animation = animation;
+	height = this->animation->frameHeight;
+	width = this->animation->frameWidth;
 }
 
 

@@ -1,4 +1,13 @@
-﻿  Hero.cpp
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\hero.cpp(64): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+﻿  Bullet.cpp
+c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\bullet.cpp(28): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
+c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\bullet.cpp(28): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  PlayState.cpp
+  MenuState.cpp
+  Main.cpp
+  KeyboardHandler.cpp
+  InputHandler.cpp
+  Hero.cpp
   Game_Shooting.vcxproj -> C:\Users\OEM\Documents\Visual Studio 2015\Projects\Game_Shooting\Debug\Game_Shooting.exe
   Game_Shooting.vcxproj -> C:\Users\OEM\Documents\Visual Studio 2015\Projects\Game_Shooting\Debug\Game_Shooting.pdb (Partial PDB)
