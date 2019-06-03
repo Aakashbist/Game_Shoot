@@ -4,6 +4,7 @@
 #include "Setting.h"
 #include "Animation.h"
 #include <cmath>
+
 class Bullet :
 	public Entity
 {
@@ -13,7 +14,7 @@ public:
 	Bullet();
 	~Bullet();
 
-	const int BULLET_SPEED = 2;
+	const int BULLET_SPEED = 5;
 	int height;
 	int width;
 
@@ -21,6 +22,7 @@ public:
 	void setAnimation(Animation* animation);
 	void update(float dt);
 	void draw();
+
 	virtual std::string getStateID();
 };
 

@@ -5,7 +5,7 @@
 Hero::Hero()
 {
 	animation = NULL;
-	active = true;
+
 }
 
 
@@ -33,17 +33,17 @@ void Hero::shoot() {
 
 void Hero::update(float dt) {
 
-	for (auto bullet = bullets.begin(); bullet != bullets.end();)
+	for (auto bullet = bullets.begin(); bullet != bullets.end(); bullet++)
 	{
+
 		if ((*bullet)->position.y < -100)
 		{
-			
-			delete *bullet;
-			bullet = bullets.erase(bullet);
+			(*bullet)->active = false;
+		
 		}
 		else {
 			(*bullet)->update(dt);
-			bullet++;
+
 		}
 
 	}
@@ -52,16 +52,18 @@ void Hero::update(float dt) {
 void Hero::draw() {
 	if (active) {
 		animation->draw(position.x, position.y);
-	}
 
-	for (auto bullet : bullets) {
+		for (auto bullet : bullets) {
 
-		bullet->draw();
-
+			bullet->draw();
+		}
 
 	}
 
 }
+
+Hero Hero::hero;
+
 
 std::string Hero::getStateID()
 {

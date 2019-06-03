@@ -38,7 +38,7 @@ public:
 	Uint32 lastUpdate; //last sdl_ticks
 	float dt;//time since last update
 
-	Uint32 TIMER_IN_MILLIS = 5000;
+	Uint32 TIMER_IN_MILLIS = 2000;
 	Uint32 NEXT_TIMER_TICK = SDL_GetTicks() + TIMER_IN_MILLIS;
 
 

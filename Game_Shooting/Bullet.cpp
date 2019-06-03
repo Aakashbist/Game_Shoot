@@ -19,9 +19,12 @@ void Bullet::setAnimation(Animation* animation) {
 
 
 void Bullet::update(float dt) {
-	position.y -= BULLET_SPEED;
-	updateMovement(dt);
+	if (active) {
+		position.y -= BULLET_SPEED;
+		updateMovement(dt);
+	}	
 }
+
 void Bullet::draw() {
 	if(active){
 	SDL_SetRenderDrawColor(Global::renderer, 0, 255, 0, 255);
@@ -31,6 +34,7 @@ void Bullet::draw() {
 	SDL_RenderFillRect(Global::renderer, &bulletRect);
 	}
 }
+
 
 std::string Bullet::getStateID()
 {

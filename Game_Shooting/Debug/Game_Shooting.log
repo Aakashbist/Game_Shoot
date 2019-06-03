@@ -3,6 +3,6 @@ c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\p
 c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(12): warning C4305: 'argument': truncation from 'double' to 'float'
 c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(15): warning C4305: 'argument': truncation from 'double' to 'float'
 c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(42): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(88): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-  Game_Shooting.vcxproj -> C:\Users\OEM\Documents\Visual Studio 2015\Projects\Game_Shooting\Debug\Game_Shooting.exe
-  Game_Shooting.vcxproj -> C:\Users\OEM\Documents\Visual Studio 2015\Projects\Game_Shooting\Debug\Game_Shooting.pdb (Partial PDB)
+c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(91): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  Game_Shooting.vcxproj -> C:\Users\OEM\documents\visual studio 2015\Projects\Game_Shooting\Debug\Game_Shooting.exe
+  Game_Shooting.vcxproj -> C:\Users\OEM\documents\visual studio 2015\Projects\Game_Shooting\Debug\Game_Shooting.pdb (Partial PDB)

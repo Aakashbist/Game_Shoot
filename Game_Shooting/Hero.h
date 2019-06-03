@@ -28,5 +28,6 @@ public:
 	virtual void draw();
 	virtual std::string getStateID();
 	 list<Bullet* > bullets;
+	 static Hero hero;
 };
 
