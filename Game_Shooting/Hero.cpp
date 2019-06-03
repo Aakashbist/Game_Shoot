@@ -32,13 +32,12 @@ void Hero::shoot() {
 }
 
 void Hero::update(float dt) {
-	
-	//Remove all game entities that are not active
+
 	for (auto bullet = bullets.begin(); bullet != bullets.end();)
 	{
 		if ((*bullet)->position.y < -100)
 		{
-			//not active
+			
 			delete *bullet;
 			bullet = bullets.erase(bullet);
 		}

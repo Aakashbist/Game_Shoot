@@ -97,8 +97,7 @@ void PlayState::update() {
 		//loop through all bullets
 
 		//if collision, deal damage to asteroid, kill bullet
-		if (e->getStateID() == "astroid")
-		{
+		
 			for (auto astroid = Astroid::astroid.astroides.begin(); astroid != Astroid::astroid.astroides.end();) {
 				for (auto bullet = hero->bullets.begin(); bullet != hero->bullets.end();)
 				{
@@ -108,6 +107,7 @@ void PlayState::update() {
 						(*bullet)->position.y + (*bullet)->height >(*astroid)->position.y)
 
 					{
+						
 						delete *bullet;
 						bullet =hero->bullets.erase(bullet);
 						delete *astroid;
@@ -122,7 +122,7 @@ void PlayState::update() {
 			}
 		}
 	}
-}
+
 
 void PlayState::render() {
 	for (auto e : entities) {
