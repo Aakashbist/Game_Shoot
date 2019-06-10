@@ -10,6 +10,7 @@ class MenuState :
 {
 public:
 	SDL_Texture* backgroundTexture;
+	Mix_Music * music;
 	
 	MenuState();
 	~MenuState();

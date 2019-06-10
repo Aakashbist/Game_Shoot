@@ -2,9 +2,15 @@
 
 
 PlayState::PlayState() {
-	
-	Entity::entities = &entities;
 
+	Entity::entities = &entities;
+	
+
+	//for Score
+	 font = TTF_OpenFont("assets/vermin_vibes_1989.ttf", 100);
+	 textColor = { 123, 0, 34, 0 };
+
+	
 	heroTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(PLAYER_SPRITE));
 	heroAnimation = new Animation(heroTexture, Global::renderer, 1, 98, 75, 0.1);
 
@@ -15,6 +21,7 @@ PlayState::PlayState() {
 	astroidAnimation2 = new Animation(astroidtexture2, Global::renderer, 1, 104, 84, 0.1);
 
 	hero = new Hero();
+	
 	hero->setAnimation(heroAnimation);
 	hero->setRenderer(Global::renderer);
 	hero->setXY(WINDOW_WIDTH / 2 - 50, WINDOW_HEIGHT - 100);
@@ -28,10 +35,7 @@ PlayState::PlayState() {
 
 PlayState::~PlayState()
 {
-	//delete everything we need to
-	delete hero;
-
-	delete heroAnimation;
+	
 	SDL_DestroyTexture(heroTexture);
 }
 
@@ -60,6 +64,7 @@ void PlayState::update() {
 				//exit loop
 				//loop = false;
 				Global::gameStateMachine.pop(); //which will kill this screen
+				Global::gameStateMachine.push(new MenuState());
 				return;
 			}
 
@@ -70,12 +75,26 @@ void PlayState::update() {
 
 	keyboardHandler.updateHeldKeys();
 
+	playerScore = hero->getScore();
+	SDL_Surface* textSurface = TTF_RenderText_Blended(font, std::to_string(playerScore).c_str(), textColor);
+
+	 textTexture = SDL_CreateTextureFromSurface(Global::renderer, textSurface);
+	SDL_FreeSurface(textSurface);
+
+	textDestination.x = 600;
+	textDestination.y = 50;
+	//query to get with and height
+	SDL_QueryTexture(textTexture, NULL, NULL, &textDestination.w, &textDestination.h);
+
+
+
+
 	//managing astroid and enemy rendering depending on time 
 
 	if (SDL_GetTicks() >= NEXT_TIMER_TICK) {
 		printf("no of  sdl %d \n", SDL_GetTicks());
 		// Gap from left and right 80 px
-		int x = (rand() % (WINDOW_WIDTH - 160)) + 200;
+		int x = (rand() % (WINDOW_WIDTH - 160)) + 80;
 		// astroid start above screen
 		int y = -100;
 		int animationSelector = rand() % 10;
@@ -109,15 +128,15 @@ void PlayState::update() {
 
 	// removing bullets form list of bullets
 	for (auto bullet = hero->bullets.begin(); bullet != hero->bullets.end();)
-	{	
+	{
 		if ((*bullet)->active) {
 			bullet++;
 		}
 		else
-		{			
+		{
 			//not active
 			delete *bullet;
-			bullet = hero->bullets.erase(bullet);			
+			bullet = hero->bullets.erase(bullet);
 		}
 	}
 
@@ -131,23 +150,46 @@ void PlayState::update() {
 	for (auto entity : entities) {
 		if (entity->getStateID() == "astroid") {
 			Astroid*  astroid = (Astroid*)entity;
-			for (auto bullet = hero->bullets.begin(); bullet != hero->bullets.end();)
-			{
+			for (auto bullet = hero->bullets.begin(); bullet != hero->bullets.end();) {
 				if ((*bullet)->active && astroid->active &&
-					(*bullet)->position.x <astroid->width + astroid->position.x &&
-					(*bullet)->position.x + (*bullet)->width>astroid->position.x &&
-					(*bullet)->position.y <astroid->position.y + astroid->height &&
-					(*bullet)->position.y + (*bullet)->height >astroid->position.y)
+					(*bullet)->position.x < astroid->width + astroid->position.x && (*bullet)->position.x > astroid->position.x &&
+					(*bullet)->position.y < astroid->position.y + astroid->height && (*bullet)->position.y > astroid->position.y)
 
 				{
+					SoundManager::soundManager.playSound("explode");
+					playerScore += 20;
+					hero->setScore(playerScore);
 					(*bullet)->active = false;
 					astroid->active = false;
 				}
 				bullet++;
 			}
+
+			if (hero->active && astroid->active &&
+				hero->position.x <astroid->width + astroid->position.x && hero->position.x > astroid->position.x &&
+				hero->position.y <astroid->position.y + astroid->height && hero->position.y  >astroid->position.y) {
+
+				astroid->active = false;
+				hero->active = false;
+				//creating death animation
+				SDL_Texture* deathTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(PLAYER_DEAD));
+				Animation* deathAnimation = new Animation(deathTexture, Global::renderer, 1, 95, 69, 0.1);
+				Hero* dhero = new Hero();
+				dhero->setAnimation(deathAnimation);
+				dhero->setRenderer(Global::renderer);
+				dhero->setXY(astroid->position.x, astroid->position.y);
+				entities.push_back(dhero);
+				SoundManager::soundManager.playSound("start");
+				SDL_Delay(2000);
+				Global::gameStateMachine.push(new EndState());
+			}
+
 		}
 	}
+	SDL_RenderCopy(Global::renderer, textTexture, NULL, &textDestination);
+
 }
+
 
 
 void PlayState::render() {
@@ -158,6 +200,7 @@ void PlayState::render() {
 }
 
 bool PlayState::onEnter() {
+	SoundManager::soundManager.playSound("start");
 	cout << "Enter Gameplay state" << endl;
 	return true;
 }

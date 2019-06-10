@@ -9,7 +9,8 @@
 #include <stdlib.h>
 #include "Texture.h"
 #include "Astroid.h"
-
+#include "MenuState.h"
+#include "EndState.h"
 
 #include "KeyboardHandler.h"
 
@@ -25,9 +26,12 @@ public:
 	SDL_Texture* astroidtexture2;
 	Animation* astroidAnimation2;
 	Bullet* bullet;
-	
+	int playerScore;
 
 	SDL_Texture* textTexture;
+	SDL_Rect textDestination;
+	TTF_Font* font;
+	SDL_Color textColor;
 
 	list<Entity*> entities;
 
@@ -38,7 +42,7 @@ public:
 	Uint32 lastUpdate; //last sdl_ticks
 	float dt;//time since last update
 
-	Uint32 TIMER_IN_MILLIS = 2000;
+	Uint32 TIMER_IN_MILLIS = 3000;
 	Uint32 NEXT_TIMER_TICK = SDL_GetTicks() + TIMER_IN_MILLIS;
 
 

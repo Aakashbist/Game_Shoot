@@ -5,6 +5,7 @@
 Hero::Hero()
 {
 	animation = NULL;
+	this->score = getScore();
 
 }
 
@@ -28,6 +29,8 @@ void Hero::shoot() {
 	bullet->setXY(position.x, position.y);
 
 	bullets.push_back(bullet);
+
+	SoundManager::soundManager.playSound("laser");
 
 }
 
@@ -68,4 +71,19 @@ Hero Hero::hero;
 std::string Hero::getStateID()
 {
 	return "hero";
+}
+void Hero::setScore(int score)
+{
+	this->score = score;
+	fout.open(highScoreFile);
+	fout << score;
+	fout.close();
+}
+
+int Hero::getScore(void)
+{
+	fin.open(highScoreFile);
+	fin >> score;
+	fin.close();
+	return score;
 }

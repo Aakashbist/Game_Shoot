@@ -60,6 +60,9 @@
     <ClCompile Include="Astroid.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EndState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SoundManager.h">
@@ -108,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Astroid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EndState.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -2,13 +2,17 @@
 
 #include <SDL_ttf.h>//text to font
 #include <SDL_mixer.h>//sound n music
-#include<iostream>
 #include<SDL_image.h>
+
+#include<stdlib.h>
+#include<time.h>
+#include<iostream>
+
 #include"Global.h"
 #include"MenuState.h"
 #include"Setting.h"
-#include<stdlib.h>
-#include<time.h>
+#include"SoundManager.h"
+#include"Hero.h"
 using namespace std;
 
 
@@ -55,7 +59,14 @@ int main(int argc, char** argv) {
 	}
 	//get global game state to reference this renderer for global access
 	
-
+	if (TTF_Init() != 0)
+	{
+		cout << "Sdl ttf failed: " << TTF_GetError() << endl;
+		system("pause");
+		SDL_Quit();
+		return -1;
+	}
+	
 
 	if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096) == -1) {
 		cout << "Mixer error: " << Mix_GetError() << endl;
@@ -63,11 +74,41 @@ int main(int argc, char** argv) {
 		system("pause");
 		return -1;
 	}
+
+	Hero* hero = new Hero();
+
+	//setup some text
+	int score = hero->getScore();
+	
+	TTF_Font* font = TTF_OpenFont("assets/vermin_vibes_1989.ttf", 100);
+	SDL_Color textColor = { 123, 0, 34, 0 };
+
+	SDL_Surface* textSurface = TTF_RenderText_Blended(font,std::to_string(score).c_str(), textColor);
+
+	//convert surface to texteure
+	SDL_Texture* textTexture = SDL_CreateTextureFromSurface(Global::renderer, textSurface);
+	SDL_FreeSurface(textSurface);
+
+	SDL_Rect textDestination;
+	textDestination.x = 600;
+	textDestination.y = 50;
+	//query to get with and height
+	SDL_QueryTexture(textTexture, NULL, NULL, &textDestination.w, &textDestination.h);
+
 	SDL_Texture* backgroundTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(GAME_BACKGROUND));
 
+	// play the music
 
+	//prams: music to play
+	//       how may times to loop the music(-1 play infinitly)
+	
 
-Global::gameStateMachine.push(new MenuState());
+	//load sound
+	SoundManager::soundManager.loadSound("explode",EXPLODE_SOUND);
+	SoundManager::soundManager.loadSound("laser", FIRE_SOUND);
+	SoundManager::soundManager.loadSound("start",GAME_START_SOUND);
+
+Global::gameStateMachine.push(new EndState());
 	
 	bool loop = true;
 	while (loop) {
@@ -79,10 +120,16 @@ Global::gameStateMachine.push(new MenuState());
 			loop = false;
 
 		SDL_RenderCopy(Global::renderer, backgroundTexture, NULL, NULL);
+		SDL_RenderCopy(Global::renderer, textTexture, NULL, &textDestination);
 		
 	}
+		
 	//clean up any extra screen game states
 	Global::gameStateMachine.clearAll();
+
+
+	Mix_PausedMusic();
+	
 
 	SDL_DestroyRenderer(Global::renderer);
 	SDL_DestroyWindow(Global::window);

@@ -12,6 +12,7 @@ MenuState::MenuState()
 MenuState::~MenuState()
 {
 	SDL_DestroyTexture(backgroundTexture);
+	
 }
 
 
@@ -34,6 +35,7 @@ void MenuState::update() {
 				return;
 			}
 			if (event.key.keysym.scancode == SDL_SCANCODE_RETURN) {
+				Mix_FreeMusic(music);
 				Global::gameStateMachine.push(new PlayState());
 				//Global::currentGameState = Game_State::PLAY;
 			}
@@ -48,11 +50,14 @@ void MenuState::render() {
 }
 bool MenuState::onEnter() {
 
+	music = Mix_LoadMUS(GAME_INTRO_SOUND);
+	Mix_PlayMusic(music, -1);
 	std::cout << "Entering menu state" << std::endl;
 	return true;
 
 }
 bool MenuState::onExit() {
+	
 	std::cout << "Exiting menu state" << std::endl;
 	return true;
 }
