@@ -76,19 +76,7 @@ void PlayState::update() {
 	keyboardHandler.updateHeldKeys();
 
 	playerScore = hero->getScore();
-	SDL_Surface* textSurface = TTF_RenderText_Blended(font, std::to_string(playerScore).c_str(), textColor);
-
-	 textTexture = SDL_CreateTextureFromSurface(Global::renderer, textSurface);
-	SDL_FreeSurface(textSurface);
-
-	textDestination.x = 600;
-	textDestination.y = 50;
-	//query to get with and height
-	SDL_QueryTexture(textTexture, NULL, NULL, &textDestination.w, &textDestination.h);
-
-
-
-
+	
 	//managing astroid and enemy rendering depending on time 
 
 	if (SDL_GetTicks() >= NEXT_TIMER_TICK) {
@@ -186,7 +174,9 @@ void PlayState::update() {
 
 		}
 	}
-	SDL_RenderCopy(Global::renderer, textTexture, NULL, &textDestination);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT),"Score : " , 36, 650, 15);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(playerScore).c_str(), 36, 700, 50);
+
 
 }
 

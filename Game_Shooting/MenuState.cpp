@@ -18,6 +18,7 @@ MenuState::~MenuState()
 
 void MenuState::update() {
 	SDL_Event event;
+	//int score = Hero::hero.getScore();
 	while (SDL_PollEvent(&event))
 	{
 		if (event.type == SDL_QUIT) {
@@ -41,8 +42,14 @@ void MenuState::update() {
 			}
 		}
 	}
-
-}
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Score : ", 36, 550, 30);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(Hero::hero.getScore()).c_str(), 36, 680, 30);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "SPACE SHOOTER", 75, 150, 50);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Menu", 55, 300, 150);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Play",  55, 300, 250);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Hall of Fame", 55, 300, 350);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Exit", 55, 300, 450);
+	}
 void MenuState::render() {
 
 	SDL_RenderPresent(Global::renderer);

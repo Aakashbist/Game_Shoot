@@ -5,28 +5,7 @@
 EndState::EndState()
 {
 	 gameOverTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(GAME_OVER));
-	 
-	//gameOverAnimation = new Animation(gameOverTexture, Global::renderer, 1, 225, 225, 0.1);
-	/* destination.x = WINDOW_WIDTH / 2 - 50;
-	 destination.y = WINDOW_HEIGHT / 2 + 300;
-	 destination.w = 225;
-	 destination.w = 225;*/
-	
-	 TTF_Font* font = TTF_OpenFont("assets/vermin_vibes_1989.ttf", 16);
-	 SDL_Color textColor = { 123, 0, 34, 0 };
-
-	 SDL_Surface* textSurface = TTF_RenderText_Blended(font, "Text on the screen!", textColor);
-
-	 //convert surface to texteure
-	 textTexture = SDL_CreateTextureFromSurface(Global::renderer, textSurface);
-	 SDL_FreeSurface(textSurface);
-
-	
-	 textDestination.x = 50;
-	 textDestination.y = 50;
-	 //query to get with and height
-	 SDL_QueryTexture(textTexture, NULL, NULL, &textDestination.w, &textDestination.h);
-
+	 	
 }
 
 
@@ -62,7 +41,8 @@ void EndState::update()
 
 
 	}
-	SDL_RenderCopy(Global::renderer, textTexture, NULL, &textDestination);
+	
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Text on the screen using new class!", 36,100, 100);
 }
 
 void EndState::render()

@@ -1,35 +1,23 @@
-﻿  Vector.cpp
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\vector.cpp(28): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\vector.cpp(36): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\vector.cpp(37): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Texture.cpp
+﻿  Texture.cpp
+c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\texture.cpp(73): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\texture.cpp(74): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  MouseHandler.cpp
+c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\mousehandler.cpp(18): error C2039: 'positi': is not a member of 'Texture'
+  c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\texture.h(10): note: see declaration of 'Texture'
+  MenuState.cpp
+  Generating Code...
+  Compiling...
   PlayState.cpp
 c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(15): warning C4305: 'argument': truncation from 'double' to 'float'
 c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(18): warning C4305: 'argument': truncation from 'double' to 'float'
 c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(21): warning C4305: 'argument': truncation from 'double' to 'float'
 c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(46): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(110): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(176): warning C4305: 'argument': truncation from 'double' to 'float'
-  MenuState.cpp
+c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(98): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\playstate.cpp(164): warning C4305: 'argument': truncation from 'double' to 'float'
+  EndState.cpp
+  Generating Code...
+  Skipping... (no relevant changes detected)
   Main.cpp
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\main.cpp(20): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   KeyboardHandler.cpp
   InputHandler.cpp
   Hero.cpp
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\hero.cpp(57): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Global.cpp
-  GameStateMachine.cpp
-  Entity.cpp
-  EndState.cpp
-  Bullet.cpp
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\bullet.cpp(31): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\bullet.cpp(31): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Astroid.cpp
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\astroid.cpp(37): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-  Animation.cpp
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\animation.cpp(63): warning C4838: conversion from 'float' to 'int' requires a narrowing conversion
-c:\users\oem\documents\visual studio 2015\projects\game_shooting\game_shooting\animation.cpp(63): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-  Generating Code...
-  LINK : C:\Users\OEM\Documents\Visual Studio 2015\Projects\Game_Shooting\Debug\Game_Shooting.exe not found or not built by the last incremental link; performing full link
-  Game_Shooting.vcxproj -> C:\Users\OEM\Documents\Visual Studio 2015\Projects\Game_Shooting\Debug\Game_Shooting.exe
-  Game_Shooting.vcxproj -> C:\Users\OEM\Documents\Visual Studio 2015\Projects\Game_Shooting\Debug\Game_Shooting.pdb (Partial PDB)

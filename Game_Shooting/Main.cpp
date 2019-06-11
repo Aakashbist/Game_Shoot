@@ -108,7 +108,7 @@ int main(int argc, char** argv) {
 	SoundManager::soundManager.loadSound("laser", FIRE_SOUND);
 	SoundManager::soundManager.loadSound("start",GAME_START_SOUND);
 
-Global::gameStateMachine.push(new EndState());
+Global::gameStateMachine.push(new MenuState());
 	
 	bool loop = true;
 	while (loop) {
@@ -120,7 +120,8 @@ Global::gameStateMachine.push(new EndState());
 			loop = false;
 
 		SDL_RenderCopy(Global::renderer, backgroundTexture, NULL, NULL);
-		SDL_RenderCopy(Global::renderer, textTexture, NULL, &textDestination);
+		//SDL_RenderCopy(Global::renderer, textTexture, NULL, &textDestination);
+		
 		
 	}
 		
