@@ -1,14 +1,22 @@
 #include "EndState.h"
 
-
-
 EndState::EndState()
-{	 	
+{
+	score = 0;
+	highScore = new HighScore();
 }
+
+EndState::EndState(int playerScore)
+{	 	
+	score = playerScore;
+	highScore = new HighScore();
+}
+
 
 
 EndState::~EndState()
 {
+	delete highScore;
 }
 
 void EndState::update()
@@ -40,8 +48,9 @@ void EndState::update()
 
 	}
 	
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Score : ", 36, 550, 30, Global::menuSelectedColor);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(Hero::hero.getScore()).c_str(), 36, 680, 30, Global::menuSelectedColor);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Game Over ", 50, 300, 150, Global::menuSelectedColor);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Your Score is : ", 36, 300, 250, Global::menuSelectedColor);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(score).c_str(), 36, 300, 350, Global::menuSelectedColor);
 }
 
 void EndState::render()
@@ -52,6 +61,7 @@ void EndState::render()
 
 bool EndState::onEnter()
 {
+	
 	cout<< "Entering EndState.h \n";
 	return true;
 }

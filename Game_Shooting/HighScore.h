@@ -1,6 +1,7 @@
 #pragma once
-
-#include<fstream>
+#include <fstream>
+#include <iostream>
+#include <string>
 #include"Setting.h"
 class HighScore
 {

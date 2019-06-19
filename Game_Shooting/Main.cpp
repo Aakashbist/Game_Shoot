@@ -120,12 +120,9 @@ Global::gameStateMachine.push(new MenuState());
 			loop = false;
 
 		SDL_RenderCopy(Global::renderer, backgroundTexture, NULL, NULL);
-		//SDL_RenderCopy(Global::renderer, textTexture, NULL, &textDestination);
-		
 		
 	}
 		
-	//clean up any extra screen game states
 	Global::gameStateMachine.clearAll();
 
 

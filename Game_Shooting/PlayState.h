@@ -11,7 +11,7 @@
 #include "Astroid.h"
 #include "MenuState.h"
 #include "EndState.h"
-
+#include "HighScore.h"
 #include "KeyboardHandler.h"
 
 class PlayState :
@@ -22,6 +22,7 @@ public:
 	SDL_Texture* astroidTexture;
 	Animation* astroidAnimation;
 	Animation* heroAnimation;
+	HighScore* highScore;
 	Hero* hero;
 	SDL_Texture* astroidtexture2;
 	Animation* astroidAnimation2;

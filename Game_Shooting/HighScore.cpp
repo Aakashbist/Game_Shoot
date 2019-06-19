@@ -14,7 +14,8 @@ HighScore::~HighScore()
 void HighScore::setHighScore(int score)
 {
 	
-	fout.open(highScoreFile);
+	fout.open(highScoreFile, std::ofstream::app);
+	fout << "\n";
 	fout << score;
 	fout.close();
 

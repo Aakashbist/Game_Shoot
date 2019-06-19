@@ -40,7 +40,7 @@ void MenuState::update() {
 				Mix_FreeMusic(music);
 				switch (selectedIndex) {
 				case 1:
-
+					Global::gameStateMachine.push(new EndState());
 					break;
 				case 2:
 					Global::gameStateMachine.push(new PlayState());

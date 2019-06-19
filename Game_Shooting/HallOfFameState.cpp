@@ -59,6 +59,8 @@ void HallOfFameState::render()
 
 bool HallOfFameState::onEnter()
 {
+	Mix_Music*  music = Mix_LoadMUS(GAME_INTRO_SOUND);
+	Mix_PlayMusic(music, -1);
 	cout << "Entering EndState.h \n";
 	return true;
 }

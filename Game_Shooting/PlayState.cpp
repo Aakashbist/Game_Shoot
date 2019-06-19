@@ -2,7 +2,8 @@
 
 
 PlayState::PlayState() {
-
+	playerScore = 0;
+	highScore = new HighScore();
 	Entity::entities = &entities;
 	
 
@@ -37,6 +38,10 @@ PlayState::~PlayState()
 {
 	
 	SDL_DestroyTexture(heroTexture);
+	SDL_DestroyTexture(astroidTexture);
+	SDL_DestroyTexture(astroidtexture2);
+	delete highScore;
+	delete hero;
 }
 
 void PlayState::update() {
@@ -75,7 +80,7 @@ void PlayState::update() {
 
 	keyboardHandler.updateHeldKeys();
 
-	playerScore = hero->getScore();
+	
 	
 	//managing astroid and enemy rendering depending on time 
 
@@ -145,8 +150,7 @@ void PlayState::update() {
 
 				{
 					SoundManager::soundManager.playSound("explode");
-					playerScore += 20;
-					hero->setScore(playerScore);
+					playerScore += 10;
 					(*bullet)->active = false;
 					astroid->active = false;
 				}
@@ -159,6 +163,7 @@ void PlayState::update() {
 
 				astroid->active = false;
 				hero->active = false;
+				highScore->setHighScore(playerScore);
 				//creating death animation
 				SDL_Texture* deathTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(PLAYER_DEAD));
 				Animation* deathAnimation = new Animation(deathTexture, Global::renderer, 1, 95, 69, 0.1);
@@ -169,7 +174,7 @@ void PlayState::update() {
 				entities.push_back(dhero);
 				SoundManager::soundManager.playSound("start");
 				SDL_Delay(2000);
-				Global::gameStateMachine.push(new EndState());
+				Global::gameStateMachine.push(new EndState(playerScore));
 			}
 
 		}
