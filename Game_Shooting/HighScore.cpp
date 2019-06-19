@@ -24,9 +24,9 @@ int * HighScore::getHighScores()
 {
 	fin.open(highScoreFile);
 	if (!fin.eof()) {
-		fin >> score[0];
-		fin >> score[1];
-		fin >> score[2];
+		for (int i = 0; i < 10; i++) {
+			fin >> score[i];
+		}
 		fin.close();
 	}
 	return &score[0];

@@ -8,7 +8,7 @@ public:
 	HighScore();
 	~HighScore();
 
-	int score[3];
+	int score[10];
 	std::ofstream fout;
 	std::ifstream fin;
 

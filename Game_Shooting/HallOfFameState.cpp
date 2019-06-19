@@ -42,10 +42,13 @@ void HallOfFameState::update()
 
 	}
 	int * scores = highScore->getHighScores();
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(*scores), 55, 300, 150, Global::menuDeselectedColor);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(*(scores+1)), 55, 300, 250, Global::menuDeselectedColor);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(*(scores + 2)), 55, 300, 350, Global::menuDeselectedColor);
-	
+	int yOfText = 150;
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Scores : ", 85, 150, 50, Global::menuSelectedColor);
+	for (int i = 0; i <= 10; i++) {
+		string score =std::to_string(*(scores + i));
+		Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), (score).c_str(), 55, 200, yOfText, Global::menuSelectedColor);
+		yOfText += 50;
+	}
 }
 
 void HallOfFameState::render()
