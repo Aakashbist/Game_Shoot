@@ -70,8 +70,8 @@ void Texture::createGameHeadingTexture(std::string path, std::string text, int s
 	
 	//text destination
 	SDL_Rect textDestination;
-	textDestination.x = position.x;
-	textDestination.y = position.y;
+	textDestination.x = x;
+	textDestination.y = y;
 
 	SDL_QueryTexture(texture, NULL, NULL, &textDestination.w, &textDestination.h);
 	SDL_RenderCopy(Global::renderer, texture, NULL, &textDestination);

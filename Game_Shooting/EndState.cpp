@@ -43,6 +43,7 @@ void EndState::update()
 	}
 	
 	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Text on the screen using new class!", 36,100, 100);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Texguygjugwkjhlihlhlohloihoihiuguyfug new class!", 36, 200, 200);
 }
 
 void EndState::render()
