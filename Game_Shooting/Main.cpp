@@ -104,9 +104,12 @@ int main(int argc, char** argv) {
 	
 
 	//load sound
-	SoundManager::soundManager.loadSound("explode",EXPLODE_SOUND);
+	
 	SoundManager::soundManager.loadSound("laser", FIRE_SOUND);
 	SoundManager::soundManager.loadSound("start",GAME_START_SOUND);
+	SoundManager::soundManager.loadSound("die", PLAYER_DEAD_SOUND);
+	SoundManager::soundManager.loadSound("end", GAME_END_SOUND);
+
 
 Global::gameStateMachine.push(new MenuState());
 	

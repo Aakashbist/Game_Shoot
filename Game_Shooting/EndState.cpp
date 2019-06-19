@@ -2,6 +2,7 @@
 
 EndState::EndState()
 {
+	
 	score = 0;
 	highScore = new HighScore();
 }
@@ -19,6 +20,7 @@ EndState::~EndState()
 	delete highScore;
 }
 
+
 void EndState::update()
 {
 
@@ -35,22 +37,21 @@ void EndState::update()
 			return;
 		}
 
-		if (event.type == SDL_KEYDOWN) {
-			//see if ESC key was pressed
-			if (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE) {
-
-				Global::gameStateMachine.pop(); //which will kill this screen
-				Global::gameStateMachine.push(new MenuState());
-				return;
-			}
-		}
+		
 
 
 	}
+	if (SDL_GetTicks() >= NEXT_TIMER_TICK) {
+
+		Global::gameStateMachine.pop(); //which will kill this screen
+		Global::gameStateMachine.push(new MenuState());
+		return;
+	}
+
 	
 	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Game Over ", 50, 300, 150, Global::menuSelectedColor);
 	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Your Score is : ", 36, 300, 250, Global::menuSelectedColor);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(score).c_str(), 36, 300, 350, Global::menuSelectedColor);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(score).c_str(), 50, 400, 350, Global::menuSelectedColor);
 }
 
 void EndState::render()
@@ -61,7 +62,7 @@ void EndState::render()
 
 bool EndState::onEnter()
 {
-	
+	SoundManager::soundManager.playSound("end");
 	cout<< "Entering EndState.h \n";
 	return true;
 }

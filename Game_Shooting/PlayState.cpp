@@ -172,7 +172,8 @@ void PlayState::update() {
 				dhero->setRenderer(Global::renderer);
 				dhero->setXY(astroid->position.x, astroid->position.y);
 				entities.push_back(dhero);
-				SoundManager::soundManager.playSound("start");
+				SoundManager::soundManager.playSound("die");
+				render();
 				SDL_Delay(2000);
 				Global::gameStateMachine.push(new EndState(playerScore));
 			}

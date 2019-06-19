@@ -16,6 +16,8 @@ public:
 	SDL_Rect textDestination;
 	SDL_Texture* textTexture;
 
+	Uint32 TIMER_IN_MILLIS = 3000;
+	Uint32 NEXT_TIMER_TICK = SDL_GetTicks() + TIMER_IN_MILLIS;
 	virtual void update();
 	virtual void render();
 	virtual bool onEnter();
