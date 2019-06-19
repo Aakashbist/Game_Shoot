@@ -72,6 +72,11 @@ artifacts/
 # Chutzpah Test files
 _Chutzpah*
 
+
+Game_Shooting/Debug/**/
+Game_Shooting/Debug/
+debug/**/
+/**/*.db
 # Visual C++ cache files
 ipch/
 *.aps

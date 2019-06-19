@@ -15,10 +15,10 @@ void MouseHandler::update(SDL_Event* event) {
 	if
 		(event->type == SDL_MOUSEBUTTONDOWN && event->button.button == SDL_BUTTON_LEFT) {
 		//if mouse is clicked over hero
-		if (event->button.x >= Texture::instance()->positi && event->button.x < +hero->position.x + 32
+	/*	if (event->button.x >= Texture::instance()->positi && event->button.x < +hero->position.x + 32
 			&& event->button.y >= hero->position.y  && event->button.y < +hero->position.y + 32 ) {
 			leftMouseHeld = true;
-		}
+		}*/
 	}
 
 	//checked to see if left mouse button was relesed
