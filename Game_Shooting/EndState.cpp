@@ -3,9 +3,7 @@
 
 
 EndState::EndState()
-{
-	 gameOverTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(GAME_OVER));
-	 	
+{	 	
 }
 
 
@@ -16,7 +14,7 @@ EndState::~EndState()
 void EndState::update()
 {
 
-	SDL_RenderCopy(Global::renderer, gameOverTexture, NULL, NULL);
+	
 
 	//gameOverAnimation->draw(WINDOW_WIDTH / 2 - 50, WINDOW_HEIGHT / 2 + 300);
 	SDL_Event event;
@@ -42,8 +40,8 @@ void EndState::update()
 
 	}
 	
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Text on the screen using new class!", 36,100, 100);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Texguygjugwkjhlihlhlohloihoihiuguyfug new class!", 36, 200, 200);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Score : ", 36, 550, 30, Global::menuSelectedColor);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(Hero::hero.getScore()).c_str(), 36, 680, 30, Global::menuSelectedColor);
 }
 
 void EndState::render()

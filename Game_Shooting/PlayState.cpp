@@ -174,9 +174,8 @@ void PlayState::update() {
 
 		}
 	}
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT),"Score : " , 36, 650, 15);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(playerScore).c_str(), 36, 700, 50);
-
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT),"Score : " , 36, 650, 15,Global::menuSelectedColor);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(playerScore).c_str(), 36, 700, 50, Global::menuSelectedColor);
 
 }
 

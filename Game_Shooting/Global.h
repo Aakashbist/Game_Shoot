@@ -12,6 +12,8 @@ public:
 	Global();
 	~Global();
 
+	static SDL_Color menuSelectedColor;
+	static SDL_Color menuDeselectedColor;
 	
 	static SDL_Window* window;
 	static SDL_Renderer* renderer;

@@ -19,7 +19,7 @@ public:
 	std::string path;
 
 	SDL_Texture * loadTexture(std::string path);
-	void createGameHeadingTexture(std::string path, std::string text, int size, int x, int y);
+	void createGameHeadingTexture(std::string path, std::string text, int size, int x, int y,SDL_Color color);
 
 	std::string getPath(std::string path);
 	std::string getScore(int Score);

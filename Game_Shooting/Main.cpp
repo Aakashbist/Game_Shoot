@@ -108,7 +108,7 @@ int main(int argc, char** argv) {
 	SoundManager::soundManager.loadSound("laser", FIRE_SOUND);
 	SoundManager::soundManager.loadSound("start",GAME_START_SOUND);
 
-Global::gameStateMachine.push(new EndState());
+Global::gameStateMachine.push(new MenuState());
 	
 	bool loop = true;
 	while (loop) {

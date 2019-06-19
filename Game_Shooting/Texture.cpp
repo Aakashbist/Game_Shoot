@@ -52,13 +52,13 @@ SDL_Texture * Texture::loadTexture(std::string path)
 	SDL_FreeSurface(surface);
 	return texture;
 }
-void Texture::createGameHeadingTexture(std::string path, std::string text, int size, int x, int y)
+void Texture::createGameHeadingTexture(std::string path, std::string text, int size, int x, int y,SDL_Color color)
 {
 	//RenderText(string text, string fontPath, int size, int x, int y)
 	TTF_Font* font = TTF_OpenFont(path.c_str(), size);
 	
 																	//color
-	SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(), { 223, 0, 34, 145 });
+	SDL_Surface* surface = TTF_RenderText_Solid(font, text.c_str(),color);
 	if (surface == NULL) {
 		std::cout << "Text render error: " << IMG_GetError() << std::endl;
 	}

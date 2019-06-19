@@ -5,18 +5,19 @@
 
 MenuState::MenuState()
 {
-	
+
 }
 
 
 MenuState::~MenuState()
 {
 	SDL_DestroyTexture(backgroundTexture);
-	
+
 }
 
 
 void MenuState::update() {
+
 	SDL_Event event;
 	//int score = Hero::hero.getScore();
 	while (SDL_PollEvent(&event))
@@ -29,7 +30,7 @@ void MenuState::update() {
 
 		}
 		if (event.type == SDL_KEYDOWN) {
-			if (event.key.keysym.scancode == SDL_SCANCODE_A) {
+			if (event.key.keysym.scancode == SDL_SCANCODE_ESCAPE) {
 				//exit loop
 				Global::quitGame = true;
 				Global::gameStateMachine.pop();
@@ -37,19 +38,43 @@ void MenuState::update() {
 			}
 			if (event.key.keysym.scancode == SDL_SCANCODE_RETURN) {
 				Mix_FreeMusic(music);
-				Global::gameStateMachine.push(new PlayState());
-				//Global::currentGameState = Game_State::PLAY;
+				switch (selectedIndex) {
+				case 1:
+
+					break;
+				case 2:
+					Global::gameStateMachine.push(new PlayState());
+					break;
+				case 3:
+					Global::gameStateMachine.push(new HallOfFameState());
+					break;
+				case 4:
+					Global::quitGame = true;
+					Global::gameStateMachine.pop();
+					return;
+				}
+			}
+
+			if (event.key.keysym.scancode == SDL_SCANCODE_UP) {
+				selectedIndex--;
+				if (selectedIndex <= 0) {
+					selectedIndex = 4;
+				}
+			}
+
+			if (event.key.keysym.scancode == SDL_SCANCODE_DOWN) {
+				selectedIndex++;
+				if (selectedIndex > 4) {
+					selectedIndex = 1;
+				}
 			}
 		}
 	}
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Score : ", 36, 550, 30);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(Hero::hero.getScore()).c_str(), 36, 680, 30);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "SPACE SHOOTER", 75, 150, 50);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Menu", 55, 300, 150);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Play",  55, 300, 250);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Hall of Fame", 55, 300, 350);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Exit", 55, 300, 450);
-	}
+
+	
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "SPACE SHOOTER", 75, 150, 50, Global::menuSelectedColor);
+	menuOption(selectedIndex);
+}
 void MenuState::render() {
 
 	SDL_RenderPresent(Global::renderer);
@@ -64,10 +89,32 @@ bool MenuState::onEnter() {
 
 }
 bool MenuState::onExit() {
-	
+
 	std::cout << "Exiting menu state" << std::endl;
 	return true;
 }
 std::string MenuState::getStateID() {
 	return "menuState";
+}
+
+void menuOption(int num) {
+
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Menu", 55, 300, 150, Global::menuDeselectedColor);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Play", 55, 300, 250, Global::menuDeselectedColor);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Hall of Fame", 55, 300, 350, Global::menuDeselectedColor);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Exit", 55, 300, 450, Global::menuDeselectedColor);
+	switch (num) {
+	case 1:
+		Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Menu", 55, 300, 150, Global::menuSelectedColor);
+		break;
+	case 2:
+		Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Play", 55, 300, 250, Global::menuSelectedColor);
+		break;
+	case 3:
+		Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Hall of Fame", 55, 300, 350, Global::menuSelectedColor);
+		break;
+	case 4:
+		Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Exit", 55, 300, 450, Global::menuSelectedColor);
+		break;
+	}
 }
