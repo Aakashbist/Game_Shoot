@@ -41,7 +41,7 @@ void HallOfFameState::update()
 
 
 	}
-	int * scores = highScore->getHighScores();
+ 	int * scores = highScore->getHighScores();
 	int yOfText = 150;
 	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Scores : ", 85, 150, 50, Global::menuSelectedColor);
 	for (int i = 0; i <= 10; i++) {

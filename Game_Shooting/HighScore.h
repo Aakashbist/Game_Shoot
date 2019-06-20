@@ -12,11 +12,10 @@ public:
 	int score[10];
 	std::ofstream fout;
 	std::ifstream fin;
-
-
+	
 	void setHighScore(int score);
 	int * getHighScores();
-
+	
 
 };
 

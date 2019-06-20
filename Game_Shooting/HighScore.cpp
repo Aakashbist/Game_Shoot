@@ -11,12 +11,18 @@ HighScore::~HighScore()
 {
 }
 
-void HighScore::setHighScore(int score)
+void HighScore::setHighScore(int s)
 {
-	
+	fin.open(highScoreFile);
+	if (!fin.eof()) {
+		for (int i = 0; i < 10; i++) {
+			fin >> score[i];
+		}
+		fin.close();
+	}
 	fout.open(highScoreFile, std::ofstream::app);
 	fout << "\n";
-	fout << score;
+	fout << s;
 	fout.close();
 
 }
@@ -31,5 +37,5 @@ int * HighScore::getHighScores()
 		fin.close();
 	}
 	return &score[0];
-	
+
 }

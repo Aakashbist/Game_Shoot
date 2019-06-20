@@ -40,15 +40,12 @@ void MenuState::update() {
 				Mix_FreeMusic(music);
 				switch (selectedIndex) {
 				case 1:
-					Global::gameStateMachine.push(new EndState());
-					break;
-				case 2:
 					Global::gameStateMachine.push(new PlayState());
 					break;
-				case 3:
+				case 2:
 					Global::gameStateMachine.push(new HallOfFameState());
 					break;
-				case 4:
+				case 3:
 					Global::quitGame = true;
 					Global::gameStateMachine.pop();
 					return;
@@ -58,13 +55,13 @@ void MenuState::update() {
 			if (event.key.keysym.scancode == SDL_SCANCODE_UP) {
 				selectedIndex--;
 				if (selectedIndex <= 0) {
-					selectedIndex = 4;
+					selectedIndex = 3;
 				}
 			}
 
 			if (event.key.keysym.scancode == SDL_SCANCODE_DOWN) {
 				selectedIndex++;
-				if (selectedIndex > 4) {
+				if (selectedIndex > 3) {
 					selectedIndex = 1;
 				}
 			}
@@ -99,22 +96,19 @@ std::string MenuState::getStateID() {
 
 void menuOption(int num) {
 
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Menu", 55, 350, 150, Global::menuDeselectedColor);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Play", 55, 350, 250, Global::menuDeselectedColor);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Hall of Fame", 55, 200, 350, Global::menuDeselectedColor);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Exit", 55, 350, 450, Global::menuDeselectedColor);
-	switch (num) {
+	
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Play", 55, 350, 170, Global::menuDeselectedColor);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Hall of Fame", 55, 200,270, Global::menuDeselectedColor);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Exit", 55, 350, 370, Global::menuDeselectedColor);
+	switch (num) {	
 	case 1:
-		Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Menu", 55, 350, 150, Global::menuSelectedColor);
+		Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Play", 55, 350, 170, Global::menuSelectedColor);
 		break;
 	case 2:
-		Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Play", 55, 350, 250, Global::menuSelectedColor);
+		Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Hall of Fame", 55, 200,270, Global::menuSelectedColor);
 		break;
 	case 3:
-		Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Hall of Fame", 55, 200, 350, Global::menuSelectedColor);
-		break;
-	case 4:
-		Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Exit", 55, 350, 450, Global::menuSelectedColor);
+		Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Exit", 55, 350, 370, Global::menuSelectedColor);
 		break;
 	}
 }
