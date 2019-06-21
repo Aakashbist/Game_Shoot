@@ -1,5 +1,6 @@
 #pragma once
 #include<string>
+#include<SDL.h>
 
 class GameState
 {
@@ -13,6 +14,7 @@ public:
 	virtual bool onEnter() = 0;
 	virtual bool onExit() = 0;
 	virtual std::string getStateID() = 0;
+    SDL_Texture* backgroundTexture;
 
 };
 

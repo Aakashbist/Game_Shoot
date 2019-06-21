@@ -2,13 +2,16 @@
 
 EndState::EndState()
 {
-	
+	backgroundTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(GAME_BACKGROUND));
+
 	score = 0;
 	highScore = new HighScore();
 }
 
 EndState::EndState(int playerScore)
-{	 	
+{	 
+	backgroundTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(GAME_BACKGROUND));
+
 	score = playerScore;
 	highScore = new HighScore();
 }
@@ -18,6 +21,7 @@ EndState::EndState(int playerScore)
 EndState::~EndState()
 {
 	delete highScore;
+	delete backgroundTexture;
 }
 
 
@@ -36,10 +40,6 @@ void EndState::update()
 			Global::gameStateMachine.pop();
 			return;
 		}
-
-		
-
-
 	}
 	if (SDL_GetTicks() >= NEXT_TIMER_TICK) {
 
@@ -49,17 +49,17 @@ void EndState::update()
 	}
 
 	
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Game Over ", 50, 300, 150, Global::menuSelectedColor);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Your Score is : ", 36, 300, 250, Global::menuSelectedColor);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(score).c_str(), 50, 400, 350, Global::menuSelectedColor);
 }
 
 void EndState::render()
 {
-	
+	SDL_RenderCopy(Global::renderer, backgroundTexture, NULL, NULL);
+
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Game Over ", 50, 300, 150, Global::menuSelectedColor);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Your Score is : ", 36, 300, 250, Global::menuSelectedColor);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(score).c_str(), 50, 400, 350, Global::menuSelectedColor);
 	SDL_RenderPresent(Global::renderer);
 }
-
 bool EndState::onEnter()
 {
 	SoundManager::soundManager.playSound("end");

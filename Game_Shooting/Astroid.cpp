@@ -3,9 +3,7 @@
 Astroid::Astroid()
 {
 
-	velocity.x = 0;
-	velocity.y = 0;
-	gravity = 100;
+	
 
 	speed = rand() % 4 + 1;
 	
@@ -51,11 +49,7 @@ std::string Astroid::getStateID()
 	return "astroid";
 }
 
-void Astroid::push(Astroid* astroid)
-{/*
-	astroides.push_back(astroid);
-	Entity::entities->push_back(astroid);*/
-}
+
 
 
 Astroid Astroid::astroid;

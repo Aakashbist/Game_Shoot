@@ -75,25 +75,7 @@ int main(int argc, char** argv) {
 		return -1;
 	}
 
-	Hero* hero = new Hero();
-
-	//setup some text
-	int score = hero->getScore();
 	
-	TTF_Font* font = TTF_OpenFont("assets/vermin_vibes_1989.ttf", 100);
-	SDL_Color textColor = { 123, 0, 34, 0 };
-
-	SDL_Surface* textSurface = TTF_RenderText_Blended(font,std::to_string(score).c_str(), textColor);
-
-	//convert surface to texteure
-	SDL_Texture* textTexture = SDL_CreateTextureFromSurface(Global::renderer, textSurface);
-	SDL_FreeSurface(textSurface);
-
-	SDL_Rect textDestination;
-	textDestination.x = 600;
-	textDestination.y = 50;
-	//query to get with and height
-	SDL_QueryTexture(textTexture, NULL, NULL, &textDestination.w, &textDestination.h);
 
 	SDL_Texture* backgroundTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(GAME_BACKGROUND));
 

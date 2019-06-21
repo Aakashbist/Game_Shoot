@@ -8,6 +8,8 @@
 #define GAME_END_SOUND "assets/end.wav"
 #define EXPLODE_SOUND "assets/explode.wav"
 #define GAME_BACKGROUND "assets/window.png"
+#define GAME_BACKGROUND2 "assets/window2.png"
+
 #define GAME_OVER "assets/images.png"
 #define PLAYER_DEAD "assets/death.png"
 #define PLAYER_DEAD_SOUND "assets/die.wav"

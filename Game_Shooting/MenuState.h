@@ -5,12 +5,13 @@
 #include <iostream>
 #include "PlayState.h"
 #include "HallOfFameState.h"
+#include "Level.h"
 
 class MenuState :
 	public GameState
 {
 public:
-	SDL_Texture* backgroundTexture;
+	
 	Mix_Music * music;
 	int selectedIndex = 1;
 	

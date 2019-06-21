@@ -5,14 +5,14 @@
 
 MenuState::MenuState()
 {
-
+	backgroundTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(GAME_BACKGROUND));
 }
 
 
 MenuState::~MenuState()
 {
-	SDL_DestroyTexture(backgroundTexture);
 
+	delete backgroundTexture;
 }
 
 
@@ -40,7 +40,7 @@ void MenuState::update() {
 				Mix_FreeMusic(music);
 				switch (selectedIndex) {
 				case 1:
-					Global::gameStateMachine.push(new PlayState());
+					Global::gameStateMachine.push(new Level());
 					break;
 				case 2:
 					Global::gameStateMachine.push(new HallOfFameState());
@@ -69,11 +69,12 @@ void MenuState::update() {
 	}
 
 	
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "SPACE SHOOTER", 75, 100, 50, Global::menuSelectedColor);
-	menuOption(selectedIndex);
+	
 }
 void MenuState::render() {
-
+	SDL_RenderCopy(Global::renderer, backgroundTexture, NULL, NULL);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "SPACE SHOOTER", 75, 100, 50, Global::menuSelectedColor);
+	menuOption(selectedIndex);
 	SDL_RenderPresent(Global::renderer);
 
 }

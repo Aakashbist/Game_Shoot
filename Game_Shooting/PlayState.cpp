@@ -1,17 +1,18 @@
 #include "PlayState.h"
 
 
-PlayState::PlayState() {
+PlayState::PlayState(int level) {
+	
+
 	playerScore = 0;
 	highScore = new HighScore();
 	Entity::entities = &entities;
 	
+	if(level==1)
+	backgroundTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(GAME_BACKGROUND));
+	else
+		backgroundTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(GAME_BACKGROUND2));
 
-	//for Score
-	 font = TTF_OpenFont("assets/vermin_vibes_1989.ttf", 100);
-	 textColor = { 123, 0, 34, 0 };
-
-	
 	heroTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(PLAYER_SPRITE));
 	heroAnimation = new Animation(heroTexture, Global::renderer, 1, 98, 75, 0.1);
 
@@ -69,7 +70,7 @@ void PlayState::update() {
 				//exit loop
 				//loop = false;
 				Global::gameStateMachine.pop(); //which will kill this screen
-				Global::gameStateMachine.push(new MenuState());
+				Global::gameStateMachine.push(new Level());
 				return;
 			}
 
@@ -175,18 +176,22 @@ void PlayState::update() {
 
 		}
 	}
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT),"Score : " , 36, 650, 15,Global::menuSelectedColor);
-	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(playerScore).c_str(), 36, 700, 50, Global::menuSelectedColor);
+	
 
 }
 
 
 
 void PlayState::render() {
+	SDL_RenderCopy(Global::renderer, backgroundTexture, NULL, NULL);
 	for (auto entity : entities) {
 		entity->draw();
 	}
+
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Score : ", 36, 650, 15, Global::menuSelectedColor);
+	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(playerScore).c_str(), 36, 700, 50, Global::menuSelectedColor);
 	SDL_RenderPresent(Global::renderer);
+	
 }
 
 bool PlayState::onEnter() {
