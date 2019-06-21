@@ -3,6 +3,7 @@
 #include "Global.h"
 #include "Animation.h"
 #include "Setting.h"
+#include<stdlib.h>
 
 
 class Astroid : public Entity

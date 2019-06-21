@@ -2,9 +2,13 @@
 
 Astroid::Astroid()
 {
+
 	velocity.x = 0;
 	velocity.y = 0;
 	gravity = 100;
+
+	speed = rand() % 4 + 1;
+	
 
 }
 
@@ -27,7 +31,7 @@ void Astroid::update(float dt) {
 
 		}
 
-		position.y += 1;
+		position.y += speed;
 		updateMovement(dt);
 	}
 }

@@ -20,6 +20,7 @@ public:
 	Vector velocity;
 	Vector acceleration;
 	bool active = true;
+	int speed;
 	void drawDebugMarker(Animation* anim);
 	
 	Entity();
@@ -35,7 +36,7 @@ public:
 	virtual void draw();
 	bool hitDetection(int x, int y);
 	bool hitDetection(int x, int y,int w,int h);
-	friend bool inRange(int low, int high, int x);
+	
 	
 
 	int width;

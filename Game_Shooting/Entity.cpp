@@ -56,7 +56,6 @@ bool Entity::hitDetection(int x, int y)
 	int thisX= position.x;
 	int thisY = position.y;
 	return (this->active &&	x >= thisX && x <= (thisX + width) && y >= thisY && y <= (thisY + height));
-
 }
 
 bool Entity::hitDetection(int x, int y, int w, int h)
@@ -67,8 +66,7 @@ bool Entity::hitDetection(int x, int y, int w, int h)
 	if (((w / 2) + (width / 2)) > distance || ((h / 2) + (height / 2)) > distance)
 		return true;
 	else
-		return false;
-			
-	
+		return false;			
 }
+
 list<Entity*>* Entity::entities = NULL;
