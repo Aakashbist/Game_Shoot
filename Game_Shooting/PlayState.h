@@ -47,7 +47,8 @@ public:
 
 	Uint32 TIMER_IN_MILLIS = 3000;
 	Uint32 NEXT_TIMER_TICK = SDL_GetTicks() + TIMER_IN_MILLIS;
-	
+	int levelNumber;
+
 	PlayState(int level);
 	~PlayState();
 

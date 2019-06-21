@@ -2,14 +2,14 @@
 
 
 PlayState::PlayState(int level) {
-	
 
+	levelNumber = level;
 	playerScore = 0;
 	highScore = new HighScore();
 	Entity::entities = &entities;
-	
-	if(level==1)
-	backgroundTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(GAME_BACKGROUND));
+
+	if (levelNumber == 1)
+		backgroundTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(GAME_BACKGROUND));
 	else
 		backgroundTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(GAME_BACKGROUND2));
 
@@ -23,7 +23,7 @@ PlayState::PlayState(int level) {
 	astroidAnimation2 = new Animation(astroidtexture2, Global::renderer, 1, 104, 84, 0.1);
 
 	hero = new Hero();
-	
+
 	hero->setAnimation(heroAnimation);
 	hero->setRenderer(Global::renderer);
 	hero->setXY(WINDOW_WIDTH / 2 - 50, WINDOW_HEIGHT - 100);
@@ -37,7 +37,7 @@ PlayState::PlayState(int level) {
 
 PlayState::~PlayState()
 {
-	
+
 	SDL_DestroyTexture(heroTexture);
 	SDL_DestroyTexture(astroidTexture);
 	SDL_DestroyTexture(astroidtexture2);
@@ -81,8 +81,8 @@ void PlayState::update() {
 
 	keyboardHandler.updateHeldKeys();
 
-	
-	
+
+
 	//managing astroid and enemy rendering depending on time 
 
 	if (SDL_GetTicks() >= NEXT_TIMER_TICK) {
@@ -145,24 +145,28 @@ void PlayState::update() {
 		if (entity->getStateID() == "astroid") {
 			Astroid*  astroid = (Astroid*)entity;
 			for (auto bullet = hero->bullets.begin(); bullet != hero->bullets.end();) {
-				if ((*bullet)->active && astroid->hitDetection( (*bullet)->position.x ,	(*bullet)->position.y))
+				if ((*bullet)->active && astroid->hitDetection((*bullet)->position.x, (*bullet)->position.y))
 				{
 					SoundManager::soundManager.playSound("explode");
-					playerScore += 10;
+					if (levelNumber == 1)
+						playerScore += 10;
+					else
+						playerScore += 15;
+
 					(*bullet)->active = false;
 					astroid->active = false;
 				}
 				bullet++;
 			}
 
-			if (hero->active && astroid->hitDetection(hero->position.x,hero->position.y,hero->width,hero->height)) {
+			if (hero->active && astroid->hitDetection(hero->position.x, hero->position.y, hero->width, hero->height)) {
 
 				astroid->active = false;
 				hero->active = false;
 				highScore->setHighScore(playerScore);
 				//creating death animation
-				 deathTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(PLAYER_DEAD));
-				 deathAnimation = new Animation(deathTexture, Global::renderer, 1, 95, 69, 0.1);
+				deathTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(PLAYER_DEAD));
+				deathAnimation = new Animation(deathTexture, Global::renderer, 1, 95, 69, 0.1);
 				Hero* dhero = new Hero();
 				dhero->setAnimation(deathAnimation);
 				dhero->setRenderer(Global::renderer);
@@ -176,7 +180,7 @@ void PlayState::update() {
 
 		}
 	}
-	
+
 
 }
 
@@ -191,7 +195,7 @@ void PlayState::render() {
 	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), "Score : ", 36, 650, 15, Global::menuSelectedColor);
 	Texture::instance()->createGameHeadingTexture(Texture::instance()->getPath(TTF_FONT), std::to_string(playerScore).c_str(), 36, 700, 50, Global::menuSelectedColor);
 	SDL_RenderPresent(Global::renderer);
-	
+
 }
 
 bool PlayState::onEnter() {
