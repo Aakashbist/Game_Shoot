@@ -144,10 +144,7 @@ void PlayState::update() {
 		if (entity->getStateID() == "astroid") {
 			Astroid*  astroid = (Astroid*)entity;
 			for (auto bullet = hero->bullets.begin(); bullet != hero->bullets.end();) {
-				if ((*bullet)->active && astroid->active &&
-					(*bullet)->position.x < astroid->width + astroid->position.x && (*bullet)->position.x > astroid->position.x &&
-					(*bullet)->position.y < astroid->position.y + astroid->height && (*bullet)->position.y > astroid->position.y)
-
+				if ((*bullet)->active && astroid->hitDetection( (*bullet)->position.x ,	(*bullet)->position.y))
 				{
 					SoundManager::soundManager.playSound("explode");
 					playerScore += 10;
@@ -157,16 +154,14 @@ void PlayState::update() {
 				bullet++;
 			}
 
-			if (hero->active && astroid->active &&
-				hero->position.x <astroid->width + astroid->position.x && hero->position.x > astroid->position.x &&
-				hero->position.y <astroid->position.y + astroid->height && hero->position.y  >astroid->position.y) {
+			if (hero->active && astroid->hitDetection(hero->position.x,hero->position.y,hero->width,hero->height)) {
 
 				astroid->active = false;
 				hero->active = false;
 				highScore->setHighScore(playerScore);
 				//creating death animation
-				SDL_Texture* deathTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(PLAYER_DEAD));
-				Animation* deathAnimation = new Animation(deathTexture, Global::renderer, 1, 95, 69, 0.1);
+				 deathTexture = Texture::instance()->loadTexture(Texture::instance()->getPath(PLAYER_DEAD));
+				 deathAnimation = new Animation(deathTexture, Global::renderer, 1, 95, 69, 0.1);
 				Hero* dhero = new Hero();
 				dhero->setAnimation(deathAnimation);
 				dhero->setRenderer(Global::renderer);

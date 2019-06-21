@@ -20,6 +20,7 @@ public:
 	static bool quitGame;
 	
 	static GameStateMachine gameStateMachine;
+	static bool isDebug;
 	
 };
 

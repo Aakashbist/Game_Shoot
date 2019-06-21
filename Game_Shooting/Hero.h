@@ -23,8 +23,6 @@ private:
 public:
 	Hero();
 	~Hero();
-	int height;
-	int width;
 
 	void setAnimation(Animation* animation);
 	
@@ -33,6 +31,8 @@ public:
 	int getScore(void);
 
 	//override
+	int bulletOffSetX=50;
+	int bulletOffSetY = -25;
 	virtual void update(float dt);
 	virtual void draw();
 	virtual std::string getStateID();

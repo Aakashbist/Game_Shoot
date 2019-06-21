@@ -1,6 +1,6 @@
 #pragma once
 #include <SDL.h>
-
+#include"Global.h"
 class Animation
 {
 public:
@@ -23,4 +23,5 @@ public:
 	void draw(int x, int y);
 	void draw(int x, int y, float scale);
 	void draw(int x, int y, double rotateAngle);
+	void draw(SDL_Rect rect);//to draw hit box around enemy;
 };

@@ -11,8 +11,6 @@ public:
 	float gravity;
 	Animation* animation;
 
-	int height;
-	int width;
 
 	Astroid();
 	~Astroid();
@@ -23,4 +21,6 @@ public:
 	void push(Astroid* astroid);
 	list<Astroid*> astroides;
 	static Astroid astroid;
+
+	
 };

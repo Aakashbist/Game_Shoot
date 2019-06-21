@@ -1,6 +1,8 @@
 #pragma once
 #include <SDL.h>
 #include "Vector.h"
+#include "Animation.h"
+#include "Point.h"
 #include <list>
 
 
@@ -13,10 +15,12 @@ protected:
 	
 
 public:
+
 	Vector position;
 	Vector velocity;
 	Vector acceleration;
 	bool active = true;
+	void drawDebugMarker(Animation* anim);
 	
 	Entity();
 	~Entity();
@@ -29,6 +33,13 @@ public:
 	virtual void update(float dt);
 	virtual void updateMovement(float dt);
 	virtual void draw();
+	bool hitDetection(int x, int y);
+	bool hitDetection(int x, int y,int w,int h);
+	friend bool inRange(int low, int high, int x);
+	
+
+	int width;
+	int height;
 
 	virtual std::string getStateID() = 0;
 

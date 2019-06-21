@@ -80,3 +80,9 @@ void Animation::draw(int x, int y,double rotationAngle) {
 	SDL_RenderCopyEx(renderer, spriteSheet, &clip, &dest, rotationAngle, NULL,SDL_FLIP_NONE);
 }
 
+void Animation::draw(SDL_Rect rect)
+{
+	SDL_SetRenderDrawColor(Global::renderer, 255, 255, 0, 255);
+	SDL_RenderDrawRect(Global::renderer, &rect);
+}
+

@@ -33,8 +33,13 @@ void Astroid::update(float dt) {
 }
 
 void Astroid::draw() {
-	if (active)
+	if (active) {
+
 		animation->draw(position.x, position.y);
+		//draw hitbox
+		if (Global::isDebug)
+			drawDebugMarker(animation);
+	}
 }
 
 std::string Astroid::getStateID()
@@ -47,6 +52,7 @@ void Astroid::push(Astroid* astroid)
 	astroides.push_back(astroid);
 	Entity::entities->push_back(astroid);*/
 }
+
 
 Astroid Astroid::astroid;
 

@@ -5,8 +5,7 @@
 #include "Animation.h"
 #include <cmath>
 
-class Bullet :
-	public Entity
+class Bullet : public Entity
 {
 public:
 
@@ -15,8 +14,6 @@ public:
 	~Bullet();
 
 	const int BULLET_SPEED = 5;
-	int height;
-	int width;
 
 
 	void setAnimation(Animation* animation);

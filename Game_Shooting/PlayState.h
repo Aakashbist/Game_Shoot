@@ -33,6 +33,8 @@ public:
 	SDL_Rect textDestination;
 	TTF_Font* font;
 	SDL_Color textColor;
+	SDL_Texture* deathTexture;
+	Animation* deathAnimation;
 
 	list<Entity*> entities;
 

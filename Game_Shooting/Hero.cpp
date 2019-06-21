@@ -26,7 +26,7 @@ void Hero::shoot() {
 
 	Bullet* bullet = new Bullet();
 	bullet->setRenderer(Global::renderer);
-	bullet->setXY(position.x, position.y);
+	bullet->setXY(position.x+bulletOffSetX, position.y+bulletOffSetY);
 
 	bullets.push_back(bullet);
 
@@ -60,6 +60,8 @@ void Hero::draw() {
 
 			bullet->draw();
 		}
+		if (Global::isDebug)
+			drawDebugMarker(animation);
 
 	}
 
