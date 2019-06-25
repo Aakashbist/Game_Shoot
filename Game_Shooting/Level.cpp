@@ -73,7 +73,8 @@ void Level::update()
 void Level::render()
 {
 	SDL_RenderCopy(Global::renderer, backgroundTexture, NULL, NULL);
-	levelOption(selectedIndex);
+	
+	menuOption(selectedIndex);
 	SDL_RenderPresent(Global::renderer);
 }
 
